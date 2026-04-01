@@ -202,7 +202,14 @@ function gt(t){if(t.includes("交通"))return{c:"t-tran",i:"fa-train"};if(t.incl
 function mu(q){return"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);}
 function ec(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
 let day="Day 1",pg=0;
-function showPg(id){document.querySelectorAll(".pg,.info-pg").forEach(p=>p.classList.remove("on"));document.querySelectorAll(".ni").forEach(b=>b.classList.remove("active"));document.getElementById("pg-"+id).classList.add("on");document.getElementById("btn-"+id).classList.add("active");window.scrollTo(0,0);}
+function showPg(id){
+  document.querySelectorAll(".pg,.info-pg").forEach(p=>p.classList.remove("on"));
+  document.querySelectorAll(".ni").forEach(b=>b.classList.remove("active"));
+  document.getElementById("pg-"+id).classList.add("on");
+  document.getElementById("btn-"+id).classList.add("active");
+  document.getElementById("tabsWrap").style.display = id==="itinerary" ? "block" : "none";
+  window.scrollTo(0,0);
+}
 function buildTabs(){const w=document.getElementById("tabs");w.innerHTML="";DCFG.forEach(d=>{const b=document.createElement("button");b.className="tab"+(d.k===day?" active":"");b.textContent=d.e+" "+d.k+" "+d.s;b.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");day=d.k;pg=0;render();window.scrollTo(0,0);w.scrollLeft=b.offsetLeft-w.clientWidth/2+b.clientWidth/2;});w.appendChild(b);});}
 function go(dir){
   const rows=DATA.filter(r=>r[0]===day);
