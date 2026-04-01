@@ -118,8 +118,40 @@ function ec(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").r
 let day="Day 1",pg=0;
 function showPg(id){document.querySelectorAll(".pg,.info-pg").forEach(p=>p.classList.remove("on"));document.querySelectorAll(".ni").forEach(b=>b.classList.remove("active"));document.getElementById("pg-"+id).classList.add("on");document.getElementById("btn-"+id).classList.add("active");window.scrollTo(0,0);}
 function buildTabs(){const w=document.getElementById("tabs");w.innerHTML="";DCFG.forEach(d=>{const b=document.createElement("button");b.className="tab"+(d.k===day?" active":"");b.textContent=d.e+" "+d.k+" "+d.s;b.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");day=d.k;pg=0;render();window.scrollTo(0,0);w.scrollLeft=b.offsetLeft-w.clientWidth/2+b.clientWidth/2;});w.appendChild(b);});}
-function go(dir){const rows=DATA.filter(r=>r[0]===day);const tot=Math.ceil(rows.length/PER);pg=Math.max(0,Math.min(tot-1,pg+dir));render();window.scrollTo(0,0);}
-function render(){const rows=DATA.filter(r=>r[0]===day);const cfg=DCFG.find(d=>d.k===day);const tot=Math.ceil(rows.length/PER)||1;const sl=rows.slice(pg*PER,(pg+1)*PER);document.getElementById("banner").innerHTML=`<p class="banner-t">${cfg.e} ${day} — ${DT[day]||""}</p><p class="banner-s">共 ${rows.length} 項 ・ 第 ${pg+1} 頁／共 ${tot} 頁</p>`;const pi=`${pg+1} / ${tot}`;document.getElementById("pi1").textContent=pi;document.getElementById("p1").disabled=pg===0;document.getElementById("n1").disabled=pg>=tot-1;let h="";sl.forEach((r,i)=>{const[,tp,tm,loc,dr,wx]=r;const pt=(dr||"").split("|||");const dc=pt[0].trim();const mq=(pt[1]||loc).trim();const tg=gt(tp);const isF=tp.includes("餐飲");h+=`<div class="card" style="animation-delay:${i*60}ms"><div class="tag-row"><a href="${mu(mq)}" target="_blank" class="nav-btn"><i class="fas fa-location-arrow"></i> 導航</a><span class="tag ${tg.c}"><i class="fas ${tg.i}"></i> ${ec(tp)}</span>${tm?`<span class="time-pill">🕐 ${ec(tm)}</span>`:""}${wx?`<span style="font-size:1.2rem">${ec(wx)}</span>`:""}</div><p class="loc">${ec(loc)}</p>${dc?`<div class="card-desc"><div class="${isF?"tip-box":""}">${isF?'<p class="tip-lbl">💡 美食攻略</p>':""}<p class="desc">${ec(dc)}</p></div></div>`:""}</div>`;});document.getElementById("cards").innerHTML=h;}
+function go(dir){
+  const rows=DATA.filter(r=>r[0]===day);
+  const tot=Math.ceil(rows.length/PER);
+  const newPg=pg+dir;
+  if(newPg>=tot){
+    // 最後一頁按下一頁 → 跳下一天
+    const idx=DCFG.findIndex(d=>d.k===day);
+    if(idx<DCFG.length-1){
+      day=DCFG[idx+1].k; pg=0;
+      document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+      document.querySelectorAll(".tab")[idx+1].classList.add("active");
+      const w=document.getElementById("tabs");
+      document.querySelectorAll(".tab")[idx+1].scrollIntoView({inline:"center",behavior:"smooth"});
+    }
+  } else if(newPg<0){
+    // 第一頁按上一頁 → 跳上一天最後一頁
+    const idx=DCFG.findIndex(d=>d.k===day);
+    if(idx>0){
+      day=DCFG[idx-1].k;
+      const prevRows=DATA.filter(r=>r[0]===day);
+      pg=Math.ceil(prevRows.length/PER)-1;
+      document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
+      document.querySelectorAll(".tab")[idx-1].classList.add("active");
+      const w=document.getElementById("tabs");
+      document.querySelectorAll(".tab")[idx-1].scrollIntoView({inline:"center",behavior:"smooth"});
+    }
+  } else {
+    pg=newPg;
+  }
+  render(); window.scrollTo(0,0);
+}
+function render(){const rows=DATA.filter(r=>r[0]===day);const cfg=DCFG.find(d=>d.k===day);const tot=Math.ceil(rows.length/PER)||1;const sl=rows.slice(pg*PER,(pg+1)*PER);document.getElementById("banner").innerHTML=`<p class="banner-t">${cfg.e} ${day} — ${DT[day]||""}</p><p class="banner-s">共 ${rows.length} 項 ・ 第 ${pg+1} 頁／共 ${tot} 頁</p>`;const pi=`${pg+1} / ${tot}`;document.getElementById("pi1").textContent=pi;const dayIdx=DCFG.findIndex(d=>d.k===day);
+document.getElementById("p1").disabled=(pg===0 && dayIdx===0);
+document.getElementById("n1").disabled=(pg>=tot-1 && dayIdx===DCFG.length-1);;let h="";sl.forEach((r,i)=>{const[,tp,tm,loc,dr,wx]=r;const pt=(dr||"").split("|||");const dc=pt[0].trim();const mq=(pt[1]||loc).trim();const tg=gt(tp);const isF=tp.includes("餐飲");h+=`<div class="card" style="animation-delay:${i*60}ms"><div class="tag-row"><a href="${mu(mq)}" target="_blank" class="nav-btn"><i class="fas fa-location-arrow"></i> 導航</a><span class="tag ${tg.c}"><i class="fas ${tg.i}"></i> ${ec(tp)}</span>${tm?`<span class="time-pill">🕐 ${ec(tm)}</span>`:""}${wx?`<span style="font-size:1.2rem">${ec(wx)}</span>`:""}</div><p class="loc">${ec(loc)}</p>${dc?`<div class="card-desc"><div class="${isF?"tip-box":""}">${isF?'<p class="tip-lbl">💡 美食攻略</p>':""}<p class="desc">${ec(dc)}</p></div></div>`:""}</div>`;});document.getElementById("cards").innerHTML=h;}
 window.onload=function(){buildTabs();render();document.getElementById("ldr").style.display="none";if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});};
 </script>
 </body>
