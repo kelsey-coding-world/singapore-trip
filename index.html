@@ -18,8 +18,6 @@
   --brown-d:#3E2100;--brown-m:#6B4226;--brown-l:#9C7045;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0;}
-
-/* ── 全螢幕 flex 骨架 ── */
 html, body { height: 100dvh; overflow: hidden; }
 body {
   font-family:'Noto Sans TC',sans-serif;
@@ -29,85 +27,27 @@ body {
   color:var(--brown-d);
   display:flex; flex-direction:column;
 }
-
-/* ── Header（緊湊版）── */
-.header-wrap{
-  flex-shrink:0;
-  background:var(--card);
-  border-bottom:3px solid var(--border);
-  padding:12px 16px 8px;
-  border-radius:0 0 20px 20px;
-  text-align:center;
-  box-shadow:0 3px 8px rgba(0,0,0,0.06);
-}
+.header-wrap{flex-shrink:0;background:var(--card);border-bottom:3px solid var(--border);padding:12px 16px 8px;border-radius:0 0 20px 20px;text-align:center;box-shadow:0 3px 8px rgba(0,0,0,0.06);}
 .h-guide{font-size:10px;color:var(--brown-l);letter-spacing:.15em;margin-bottom:2px;font-weight:500;}
 .h-title{font-size:22px;font-weight:900;color:var(--brown-d);line-height:1.1;}
 .h-sub{font-size:11px;color:var(--brown-l);margin-top:2px;font-weight:500;}
-
-/* ── Day Tabs ── */
-.tabs-wrap{
-  flex-shrink:0;
-  background:rgba(245,236,215,.97);
-  backdrop-filter:blur(6px);
-  border-bottom:2px solid var(--border);
-  padding:7px 10px 6px;
-}
+.tabs-wrap{flex-shrink:0;background:rgba(245,236,215,.97);backdrop-filter:blur(6px);border-bottom:2px solid var(--border);padding:7px 10px 6px;}
 .tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{
-  flex-shrink:0;border-radius:16px;padding:7px 14px;
-  font-size:12px;font-weight:700;font-family:'Noto Sans TC',sans-serif;
-  border:2px solid var(--border);background:var(--card);color:var(--brown-m);
-  cursor:pointer;white-space:nowrap;transition:all .18s;
-}
+.tab{flex-shrink:0;border-radius:16px;padding:7px 14px;font-size:12px;font-weight:700;font-family:'Noto Sans TC',sans-serif;border:2px solid var(--border);background:var(--card);color:var(--brown-m);cursor:pointer;white-space:nowrap;transition:all .18s;}
 .tab.active{background:var(--accent);color:#FFF8EC;border-color:var(--accent);box-shadow:0 3px 0 #9A5E18;}
-
-/* ── 行程頁 — 撐滿剩餘高度 ── */
 .pg{display:none;flex-direction:column;flex:1;overflow:hidden;padding:8px 8px 0;}
 .pg.on{display:flex;}
-
-/* ── Banner ── */
-.banner{
-  flex-shrink:0;
-  background:#FFF8E6;border:2px solid var(--accent-l);
-  border-radius:14px;padding:8px 14px;margin-bottom:6px;
-}
+.banner{flex-shrink:0;background:#FFF8E6;border:2px solid var(--accent-l);border-radius:14px;padding:8px 14px;margin-bottom:6px;}
 .banner-t{font-size:13px;font-weight:900;color:var(--brown-d);}
 .banner-s{font-size:11px;color:var(--brown-l);margin-top:1px;}
-
-/* ── Pager ── */
-.pager{
-  flex-shrink:0;
-  display:flex;align-items:center;gap:6px;margin-bottom:6px;
-}
-.pg-btn{
-  background:var(--card);border:2px solid var(--border);border-radius:12px;
-  padding:7px 12px;font-size:12px;font-weight:700;font-family:'Noto Sans TC',sans-serif;
-  color:var(--brown-m);cursor:pointer;display:flex;align-items:center;gap:4px;
-  box-shadow:0 3px 0 var(--border);transition:all .15s;
-}
+.pager{flex-shrink:0;display:flex;align-items:center;gap:6px;margin-bottom:6px;}
+.pg-btn{background:var(--card);border:2px solid var(--border);border-radius:12px;padding:7px 12px;font-size:12px;font-weight:700;font-family:'Noto Sans TC',sans-serif;color:var(--brown-m);cursor:pointer;display:flex;align-items:center;gap:4px;box-shadow:0 3px 0 var(--border);transition:all .15s;}
 .pg-btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--border);}
 .pg-btn:disabled{opacity:.35;cursor:default;transform:none;}
 .pg-info{font-size:12px;font-weight:700;color:var(--brown-l);background:var(--card);border:1.5px solid var(--border-l);border-radius:10px;padding:6px 10px;text-align:center;flex:1;}
-
-/* ── 卡片區 — 均分高度 ── */
-.cards-wrap{
-  flex:1;
-  display:flex;flex-direction:column;gap:6px;
-  overflow:hidden;
-  padding-bottom:8px;
-}
-
-/* ── 單張卡片 — flex 撐高 ── */
-.card{
-  border-radius:16px;background:var(--card);
-  border:2px solid var(--border-l);
-  box-shadow:0 3px 0 var(--border);
-  padding:10px 12px 8px;
-  display:flex;flex-direction:column;
-  overflow:hidden;
-  animation:cardIn .25s ease both;
-}
+.cards-wrap{flex:1;display:flex;flex-direction:column;gap:6px;overflow:hidden;padding-bottom:8px;}
+.card{border-radius:16px;background:var(--card);border:2px solid var(--border-l);box-shadow:0 3px 0 var(--border);padding:10px 12px 8px;display:flex;flex-direction:column;overflow:hidden;animation:cardIn .25s ease both;}
 @keyframes cardIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
 .card-top{flex-shrink:0;}
 .tag-row{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-bottom:4px;}
@@ -120,29 +60,13 @@ body {
 .t-other{background:#E8E0D0;color:#4A3820;}
 .time-pill{background:var(--accent-l);color:var(--brown-m);border-radius:10px;padding:3px 9px;font-size:11px;font-weight:700;border:1.5px dashed var(--accent);}
 .loc{font-size:15px;font-weight:900;color:var(--brown-d);line-height:1.2;margin:3px 0;}
-.nav-btn{
-  float:right;margin-left:8px;margin-bottom:3px;
-  padding:7px 12px;font-size:11px;font-family:'Noto Sans TC',sans-serif;
-  background:var(--accent);color:#FFF8EC;border-radius:16px;
-  font-weight:700;box-shadow:0 3px 0 #9A5E18;
-  display:inline-flex;align-items:center;gap:5px;
-  text-decoration:none;border:none;cursor:pointer;
-}
+.nav-btn{float:right;margin-left:8px;margin-bottom:3px;padding:7px 12px;font-size:11px;font-family:'Noto Sans TC',sans-serif;background:var(--accent);color:#FFF8EC;border-radius:16px;font-weight:700;box-shadow:0 3px 0 #9A5E18;display:inline-flex;align-items:center;gap:5px;text-decoration:none;border:none;cursor:pointer;}
 .nav-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #9A5E18;}
-.card-desc{
-  flex:1;overflow:hidden;
-  margin-top:5px;padding-top:5px;
-  border-top:1.5px dashed var(--border-l);
-}
+.card-desc{flex:1;overflow:hidden;margin-top:5px;padding-top:5px;border-top:1.5px dashed var(--border-l);}
 .tip-box{background:#FFF8E6;border-radius:10px;padding:6px 10px;border:1.5px dashed var(--accent-l);height:100%;}
 .tip-lbl{font-size:10px;color:var(--accent);font-weight:900;margin-bottom:2px;}
 .desc{font-size:11px;color:var(--brown-m);line-height:1.55;white-space:pre-line;overflow:hidden;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;}
-
-/* ── 航班住宿頁 ── */
-.info-pg{
-  display:none;flex-direction:column;flex:1;
-  overflow-y:auto;padding:10px 8px 80px;
-}
+.info-pg{display:none;flex-direction:column;flex:1;overflow-y:auto;padding:10px 8px 80px;}
 .info-pg.on{display:flex;}
 .ic{border-radius:16px;padding:14px;margin-bottom:10px;}
 .ic-row{display:flex;align-items:center;gap:12px;}
@@ -153,47 +77,28 @@ body {
 .info-card{border-radius:16px;background:var(--card);border:2px solid var(--border);box-shadow:0 3px 0 var(--border);padding:14px;margin-bottom:10px;}
 .info-loc{font-size:15px;font-weight:900;color:var(--brown-d);line-height:1.2;margin:6px 0 3px;}
 .info-nav{float:right;margin-left:8px;padding:7px 12px;font-size:11px;font-family:'Noto Sans TC',sans-serif;background:var(--accent);color:#FFF8EC;border-radius:16px;font-weight:700;box-shadow:0 3px 0 #9A5E18;display:inline-flex;align-items:center;gap:5px;text-decoration:none;border:none;}
-
-/* ── 底部導覽 ── */
-.bnav{
-  flex-shrink:0;
-  background:rgba(255,251,242,.98);backdrop-filter:blur(10px);
-  border-top:2px solid var(--border);
-  border-top-left-radius:20px;border-top-right-radius:20px;
-  display:flex;justify-content:space-around;
-  padding:10px 0 20px;
-  box-shadow:0 -3px 8px rgba(0,0,0,0.05);
-}
+.bnav{flex-shrink:0;background:rgba(255,251,242,.98);backdrop-filter:blur(10px);border-top:2px solid var(--border);border-top-left-radius:20px;border-top-right-radius:20px;display:flex;justify-content:space-around;padding:10px 0 20px;box-shadow:0 -3px 8px rgba(0,0,0,0.05);}
 .ni{display:flex;flex-direction:column;align-items:center;color:var(--brown-l);cursor:pointer;gap:3px;background:none;border:none;}
 .ni.active{color:var(--accent);}
 .ni i{font-size:22px;}
 .ni span{font-size:11px;font-weight:900;font-family:'Noto Sans TC',sans-serif;}
-
-/* ── Loader ── */
 #ldr{position:fixed;inset:0;background:rgba(245,236,215,.95);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:2000;}
 #ldr p{font-size:15px;color:var(--brown-m);font-weight:700;}
 </style>
 </head>
 <body>
-
 <div id="ldr">
   <i class="fas fa-paw fa-spin" style="font-size:3rem;color:var(--accent)"></i>
   <p>貓貓正在整理行程中…🐾</p>
 </div>
-
-<!-- Header -->
 <div class="header-wrap">
   <p class="h-guide">✦ SINGAPORE TRAVEL GUIDE ✦</p>
   <h1 class="h-title">新加坡魚尾獅之旅🇸🇬</h1>
   <p class="h-sub">5天4夜 ・ 4/13 – 4/17 🐾</p>
 </div>
-
-<!-- Day Tabs -->
 <div class="tabs-wrap">
   <div class="tabs" id="tabs"></div>
 </div>
-
-<!-- 每日行程 -->
 <div id="pg-itinerary" class="pg on">
   <div class="banner" id="banner"></div>
   <div class="pager">
@@ -203,8 +108,6 @@ body {
   </div>
   <div class="cards-wrap" id="cards"></div>
 </div>
-
-<!-- 航班住宿 -->
 <div id="pg-info" class="info-pg">
   <p class="sec-t"><i class="fas fa-plane" style="color:var(--accent)"></i> 航班資訊</p>
   <div class="ic" style="background:#EFF6FF;border:2px solid #AACCE8;box-shadow:0 3px 0 #AACCE8">
@@ -217,7 +120,6 @@ body {
       <div><p class="ic-t">回程：4/17 (週四) SIN T2</p><p class="ic-s">14:00 起飛 → 18:50 抵達 TPE T2</p></div>
     </div>
   </div>
-
   <p class="sec-t"><i class="fas fa-hotel" style="color:var(--accent)"></i> 住宿資訊</p>
   <div class="info-card">
     <a href="https://www.google.com/maps/search/?api=1&query=JW+Marriott+Hotel+Singapore+South+Beach" target="_blank" class="info-nav"><i class="fas fa-location-arrow"></i> 導航</a>
@@ -231,19 +133,15 @@ body {
     <p class="info-loc">Dusit Thani Laguna Singapore</p>
     <p style="font-size:12px;color:var(--brown-l)">4/16 Check-in → 4/17 Check-out（1晚）</p>
   </div>
-
   <p class="sec-t"><i class="fas fa-lightbulb" style="color:var(--accent)"></i> 實用資訊</p>
   <div class="ic" style="background:#FFF8E6;border:2px solid var(--accent-l)"><p style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:4px">🌡️ 天氣</p><p style="font-size:12px;color:var(--brown-m)">四月均溫 29–32°C，高溫多濕，建議帶薄外套</p></div>
-  <div class="ic" style="background:#EEF5E8;border:2px solid #AACCAA"><p style="font-size:13px;font-weight:700;color:#2D5A1B;margin-bottom:4px">💳 金錢</p><p style="font-size:12px;color:var(--brown-m)">新加坡幣（SGD）・普遍刷卡 ・樟宜機場可換匯</p></div>
-  <div class="ic" style="background:#EFF6FF;border:2px solid #AACCE8"><p style="font-size:13px;font-weight:700;color:#1A4A70;margin-bottom:4px">🚇 交通</p><p style="font-size:12px;color:var(--brown-m)">建議購買 EZ-Link 卡 ・Grab 叫車 app 很方便</p></div>
+  <div class="ic" style="background:#EEF5E8;border:2px solid #AACCAA"><p style="font-size:13px;font-weight:700;color:#2D5A1B;margin-bottom:4px">💳 金錢</p><p style="font-size:12px;color:var(--brown-m)">新加坡幣（SGD）・普遍刷卡・樟宜機場可換匯</p></div>
+  <div class="ic" style="background:#EFF6FF;border:2px solid #AACCE8"><p style="font-size:13px;font-weight:700;color:#1A4A70;margin-bottom:4px">🚇 交通</p><p style="font-size:12px;color:var(--brown-m)">建議購買 EZ-Link 卡・Grab 叫車 app 很方便</p></div>
 </div>
-
-<!-- Bottom Nav -->
 <div class="bnav">
   <button onclick="showPg('itinerary')" id="btn-itinerary" class="ni active"><i class="fas fa-paw"></i><span>每日行程</span></button>
   <button onclick="showPg('info')" id="btn-info" class="ni"><i class="fas fa-hotel"></i><span>航班住宿</span></button>
 </div>
-
 <script>
 const DATA=[
   ["Day 1","✈️ 交通","08:00","桃園國際機場 T2","從桃園機場 T2 起飛 🛫|||Taiwan Taoyuan International Airport Terminal 2","☀️"],
@@ -276,95 +174,36 @@ const DATA=[
   ["Day 5","✈️ 交通","14:00","樟宜機場 T2 出發","起飛返台 🛫 依依不捨…|||Singapore Changi Airport Terminal 2","☀️"],
   ["Day 5","✈️ 交通","18:50","桃園機場 T2 抵達","回家囉 🏠|||Taiwan Taoyuan International Airport Terminal 2","⛅"],
 ];
-
 const PER=3;
 const DCFG=[{k:"Day 1",s:"4/13",e:"✈️"},{k:"Day 2",s:"4/14",e:"🎢"},{k:"Day 3",s:"4/15",e:"🦁"},{k:"Day 4",s:"4/16",e:"🏮"},{k:"Day 5",s:"4/17",e:"🛫"}];
 const DT={"Day 1":"飛向新加坡 + 鈦坦辦公室 + Night Safari 🌙","Day 2":"環球影城探險 🎢 + 克拉碼頭","Day 3":"魚尾獅與滑車 🦁 + Gardens by the Bay","Day 4":"文化街美食 🏮 Arab Street + Chinatown","Day 5":"機場採買回家 🛫"};
-
 function gt(t){if(t.includes("交通"))return{c:"t-tran",i:"fa-train"};if(t.includes("餐飲"))return{c:"t-food",i:"fa-utensils"};if(t.includes("住宿"))return{c:"t-hotel",i:"fa-bed"};if(t.includes("購物"))return{c:"t-shop",i:"fa-bag-shopping"};return{c:"t-spot",i:"fa-camera"};}
 function mu(q){return"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);}
 function ec(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
-
 let day="Day 1",pg=0;
-
-function showPg(id){
-  document.querySelectorAll(".pg,.info-pg").forEach(p=>p.classList.remove("on"));
-  document.querySelectorAll(".ni").forEach(b=>b.classList.remove("active"));
-  document.getElementById("pg-"+id).classList.add("on");
-  document.getElementById("btn-"+id).classList.add("active");
-}
-
-function buildTabs(){
-  const w=document.getElementById("tabs");w.innerHTML="";
-  DCFG.forEach(d=>{
-    const b=document.createElement("button");
-    b.className="tab"+(d.k===day?" active":"");
-    b.textContent=d.e+" "+d.k+" "+d.s;
-    b.addEventListener("click",()=>{
-      document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));
-      b.classList.add("active");day=d.k;pg=0;render();
-      w.scrollLeft=b.offsetLeft-w.clientWidth/2+b.clientWidth/2;
-    });
-    w.appendChild(b);
-  });
-}
-
-function go(dir){
-  const rows=DATA.filter(r=>r[0]===day);
-  const tot=Math.ceil(rows.length/PER);
-  pg=Math.max(0,Math.min(tot-1,pg+dir));
-  render();
-}
-
+function showPg(id){document.querySelectorAll(".pg,.info-pg").forEach(p=>p.classList.remove("on"));document.querySelectorAll(".ni").forEach(b=>b.classList.remove("active"));document.getElementById("pg-"+id).classList.add("on");document.getElementById("btn-"+id).classList.add("active");}
+function buildTabs(){const w=document.getElementById("tabs");w.innerHTML="";DCFG.forEach(d=>{const b=document.createElement("button");b.className="tab"+(d.k===day?" active":"");b.textContent=d.e+" "+d.k+" "+d.s;b.addEventListener("click",()=>{document.querySelectorAll(".tab").forEach(x=>x.classList.remove("active"));b.classList.add("active");day=d.k;pg=0;render();w.scrollLeft=b.offsetLeft-w.clientWidth/2+b.clientWidth/2;});w.appendChild(b);});}
+function go(dir){const rows=DATA.filter(r=>r[0]===day);const tot=Math.ceil(rows.length/PER);pg=Math.max(0,Math.min(tot-1,pg+dir));render();}
 function render(){
   const rows=DATA.filter(r=>r[0]===day);
   const cfg=DCFG.find(d=>d.k===day);
   const tot=Math.ceil(rows.length/PER)||1;
   const sl=rows.slice(pg*PER,(pg+1)*PER);
-
-  document.getElementById("banner").innerHTML=
-    `<p class="banner-t">${cfg.e} ${day} — ${DT[day]||""}</p>
-     <p class="banner-s">共 ${rows.length} 項 ・ 第 ${pg+1} 頁／共 ${tot} 頁</p>`;
-
+  document.getElementById("banner").innerHTML=`<p class="banner-t">${cfg.e} ${day} — ${DT[day]||""}</p><p class="banner-s">共 ${rows.length} 項 ・ 第 ${pg+1} 頁／共 ${tot} 頁</p>`;
   const pi=`${pg+1} / ${tot}`;
   document.getElementById("pi1").textContent=pi;
   document.getElementById("p1").disabled=pg===0;
   document.getElementById("n1").disabled=pg>=tot-1;
-
   let h="";
   sl.forEach((r,i)=>{
     const[,tp,tm,loc,dr,wx]=r;
-    const pt=(dr||"").split("|||");
-    const dc=pt[0].trim();
-    const mq=(pt[1]||loc).trim();
-    const tg=gt(tp);
-    const isF=tp.includes("餐飲");
-    h+=`<div class="card" style="animation-delay:${i*50}ms">
-      <div class="card-top">
-        <a href="${mu(mq)}" target="_blank" class="nav-btn"><i class="fas fa-location-arrow"></i> 導航</a>
-        <div class="tag-row">
-          <span class="tag ${tg.c}"><i class="fas ${tg.i}"></i> ${ec(tp)}</span>
-          ${tm?`<span class="time-pill">🕐 ${ec(tm)}</span>`:""}
-          ${wx?`<span style="font-size:1rem">${ec(wx)}</span>`:""}
-        </div>
-        <p class="loc">${ec(loc)}</p>
-      </div>
-      ${dc?`<div class="card-desc">
-        <div class="${isF?"tip-box":""}">
-          ${isF?'<p class="tip-lbl">💡 美食攻略</p>':""}
-          <p class="desc">${ec(dc)}</p>
-        </div>
-      </div>`:""}
-    </div>`;
+    const pt=(dr||"").split("|||");const dc=pt[0].trim();const mq=(pt[1]||loc).trim();
+    const tg=gt(tp);const isF=tp.includes("餐飲");
+    h+=`<div class="card" style="animation-delay:${i*50}ms"><div class="card-top"><a href="${mu(mq)}" target="_blank" class="nav-btn"><i class="fas fa-location-arrow"></i> 導航</a><div class="tag-row"><span class="tag ${tg.c}"><i class="fas ${tg.i}"></i> ${ec(tp)}</span>${tm?`<span class="time-pill">🕐 ${ec(tm)}</span>`:""}${wx?`<span style="font-size:1rem">${ec(wx)}</span>`:""}</div><p class="loc">${ec(loc)}</p></div>${dc?`<div class="card-desc"><div class="${isF?"tip-box":""}">${isF?'<p class="tip-lbl">💡 美食攻略</p>':""}<p class="desc">${ec(dc)}</p></div></div>`:""}</div>`;
   });
   document.getElementById("cards").innerHTML=h;
 }
-
-window.onload=function(){
-  buildTabs();render();
-  document.getElementById("ldr").style.display="none";
-  if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});
-};
+window.onload=function(){buildTabs();render();document.getElementById("ldr").style.display="none";if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});};
 </script>
 </body>
 </html>
