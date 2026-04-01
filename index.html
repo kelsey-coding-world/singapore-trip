@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Singapore 行程</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Noto+Sans+TC:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  /* ── Reset & Variables ─────────────────────────────────── */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --sea:      #0e3d5e;
+    --sea-mid:  #1a6690;
+    --sky:      #5bb8e8;
+    --sand:     #f5efe6;
+    --sand-d:   #e8ddd0;
+    --white:    #ffffff;
+    --ink:      #1c2b3a;
+    --muted:    #7a8fa0;
+    --accent:   #e8a045;
+    --accent-l: #fde8c2;
+
+    /* Type colours */
+    --交通: #3b7fc4;
+    --住宿: #7b5ea7;
+    --景點: #2e8b57;
+    --餐飲: #c0392b;
+    --購物: #e67e22;
+    --其他: #7f8c8d;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--sand);
+    color: var(--ink);
+    min-height: 100vh;
+  }
+
+  /* ── Hero Header ───────────────────────────────────────── */
+  .hero {
+    background: linear-gradient(135deg, var(--sea) 0%, var(--sea-mid) 60%, var(--sky) 100%);
+    color: var(--white);
+    padding: 48px 32px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.04'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0L80 12v2L54 40h-2zm4 0L80 16v2L58 40h-2zm4 0L80 20v2L62 40h-2zm4 0L80 24v2L66 40h-2zm4 0L80 28v2L70 40h-2zm4 0L80 32v2L74 40h-2zm4 0L80 36v2L78 40h-2zm4 0L80 40v-2h-2zm-4-40h2L80 2v2L44 0h-2zm4 0h2L80 6v2L48 0h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+  }
+  .hero-inner { position: relative; max-width: 1100px; margin: 0 auto; }
+  .hero-flag { font-size: 2.8rem; margin-bottom: 8px; }
+  .hero h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    letter-spacing: 0.02em;
+    line-height: 1.15;
+  }
+  .hero-subtitle {
+    margin-top: 10px;
+    font-size: 0.95rem;
+    font-weight: 300;
+    opacity: 0.85;
+    letter-spacing: 0.08em;
+  }
+  .hero-meta {
+    margin-top: 18px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .meta-chip {
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 20px;
+    padding: 5px 14px;
+    font-size: 0.82rem;
+    backdrop-filter: blur(4px);
+  }
+
+  /* ── Toolbar ───────────────────────────────────────────── */
+  .toolbar {
+    background: var(--white);
+    border-bottom: 1px solid var(--sand-d);
+    padding: 12px 32px;
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  }
+  .toolbar-label {
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-right: 4px;
+  }
+  .filter-btn {
+    border: 1.5px solid var(--sand-d);
+    background: var(--white);
+    color: var(--ink);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-family: 'Noto Sans TC', sans-serif;
+    cursor: pointer;
+    transition: all .18s ease;
+  }
+  .filter-btn:hover  { border-color: var(--sea-mid); color: var(--sea-mid); }
+  .filter-btn.active { background: var(--sea); color: #fff; border-color: var(--sea); }
+
+  /* ── Main Layout ───────────────────────────────────────── */
+  .main { max-width: 1100px; margin: 0 auto; padding: 32px 24px 60px; }
+
+  /* ── Day Section ───────────────────────────────────────── */
+  .day-section { margin-bottom: 36px; }
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 14px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--sea);
+  }
+  .day-badge {
+    background: var(--sea);
+    color: #fff;
+    font-family: 'Playfair Display', serif;
+    font-size: 1rem;
+    font-weight: 700;
+    padding: 6px 18px;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+  .day-count {
+    font-size: 0.8rem;
+    color: var(--muted);
+    margin-left: auto;
+  }
+
+  /* ── Cards Grid ────────────────────────────────────────── */
+  .cards-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 14px;
+  }
+
+  .card {
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--sand-d);
+    padding: 16px 18px;
+    display: flex;
+    gap: 14px;
+    transition: box-shadow .18s ease, transform .18s ease;
+    animation: fadeUp .3s ease both;
+  }
+  .card:hover {
+    box-shadow: 0 6px 20px rgba(14,61,94,0.1);
+    transform: translateY(-2px);
+  }
+  .card.hidden { display: none; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+  }
+  .card-body { flex: 1; min-width: 0; }
+
+  .card-top {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 4px;
+  }
+  .type-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.04em;
+  }
+  .time-tag {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .card-location {
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--ink);
+    margin-bottom: 4px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .card-desc {
+    font-size: 0.8rem;
+    color: var(--muted);
+    line-height: 1.55;
+    white-space: pre-line;
+  }
+  .card-weather {
+    font-size: 0.75rem;
+    margin-top: 6px;
+    color: var(--sky);
+  }
+
+  /* ── Type colour mapping ───────────────────────────────── */
+  .type-交通 { background: #dbeafe; color: #1e40af; }
+  .type-住宿 { background: #ede9fe; color: #5b21b6; }
+  .type-景點 { background: #d1fae5; color: #065f46; }
+  .type-餐飲 { background: #fee2e2; color: #991b1b; }
+  .type-購物 { background: #fed7aa; color: #9a3412; }
+  .type-其他 { background: #f3f4f6; color: #374151; }
+
+  .icon-交通 { background: #dbeafe; }
+  .icon-住宿 { background: #ede9fe; }
+  .icon-景點 { background: #d1fae5; }
+  .icon-餐飲 { background: #fee2e2; }
+  .icon-購物 { background: #fed7aa; }
+  .icon-其他 { background: #f3f4f6; }
+
+  /* ── Loading & Error ───────────────────────────────────── */
+  .state-box {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+  .state-box .icon { font-size: 3rem; margin-bottom: 14px; }
+  .state-box p { font-size: 0.95rem; }
+
+  .spinner {
+    width: 36px; height: 36px;
+    border: 3px solid var(--sand-d);
+    border-top-color: var(--sea);
+    border-radius: 50%;
+    animation: spin 0.7s linear infinite;
+    margin: 0 auto 14px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+
+  /* ── Summary Strip ─────────────────────────────────────── */
+  .summary-strip {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 28px;
+  }
+  .summary-chip {
+    background: var(--white);
+    border: 1px solid var(--sand-d);
+    border-radius: 8px;
+    padding: 10px 18px;
+    text-align: center;
+    min-width: 100px;
+  }
+  .summary-chip .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.6rem;
+    color: var(--sea);
+    line-height: 1;
+  }
+  .summary-chip .lbl {
+    font-size: 0.72rem;
+    color: var(--muted);
+    margin-top: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  /* ── Responsive ────────────────────────────────────────── */
+  @media (max-width: 600px) {
+    .hero { padding: 32px 20px; }
+    .toolbar { padding: 10px 16px; }
+    .main { padding: 20px 16px 50px; }
+    .cards-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Hero -->
+<header class="hero">
+  <div class="hero-inner">
+    <div class="hero-flag">🇸🇬</div>
+    <h1>Singapore 新加坡行程</h1>
+    <p class="hero-subtitle">4 月 13 日 – 4 月 17 日 ・ 5 Days 4 Nights</p>
+    <div class="hero-meta">
+      <span class="meta-chip">✈️ 桃園機場 T2 出發</span>
+      <span class="meta-chip">🏨 JW Marriott + Dusit Thani</span>
+      <span class="meta-chip">🎢 Universal Studios</span>
+      <span class="meta-chip">🌿 Gardens by the Bay</span>
+    </div>
+  </div>
+</header>
+
+<!-- Sticky Filter Toolbar -->
+<nav class="toolbar" id="toolbar">
+  <span class="toolbar-label">篩選</span>
+  <button class="filter-btn active" data-filter="all">全部</button>
+  <button class="filter-btn" data-filter="Day 1">Day 1</button>
+  <button class="filter-btn" data-filter="Day 2">Day 2</button>
+  <button class="filter-btn" data-filter="Day 3">Day 3</button>
+  <button class="filter-btn" data-filter="Day 4">Day 4</button>
+  <button class="filter-btn" data-filter="Day 5">Day 5</button>
+  <button class="filter-btn" data-filter="交通">🚄 交通</button>
+  <button class="filter-btn" data-filter="餐飲">🍽 餐飲</button>
+  <button class="filter-btn" data-filter="景點">📍 景點</button>
+  <button class="filter-btn" data-filter="住宿">🏨 住宿</button>
+</nav>
+
+<!-- Main Content -->
+<main class="main">
+  <div id="summary" class="summary-strip"></div>
+  <div id="content">
+    <div class="state-box">
+      <div class="spinner"></div>
+      <p>正在載入行程資料…</p>
+    </div>
+  </div>
+</main>
+
+<script>
+// ── Icon map ────────────────────────────────────────────────
+const ICON = { '交通':'🚄', '住宿':'🏨', '景點':'📍', '餐飲':'🍽️', '購物':'🛍️', '其他':'📌' };
+
+// ── State ───────────────────────────────────────────────────
+let allData   = [];
+let activeFilter = 'all';
+
+// ── Load data via GAS server call ───────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+  google.script.run
+    .withSuccessHandler(onDataLoaded)
+    .withFailureHandler(onError)
+    .getItineraryData();
+
+  // Filter buttons
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      activeFilter = btn.dataset.filter;
+      renderContent();
+    });
+  });
+});
+
+function onDataLoaded(jsonStr) {
+  try {
+    allData = JSON.parse(jsonStr);
+  } catch(e) {
+    allData = [];
+  }
+  renderSummary();
+  renderContent();
+}
+
+function onError(err) {
+  document.getElementById('content').innerHTML = `
+    <div class="state-box">
+      <div class="icon">⚠️</div>
+      <p>資料載入失敗：${err.message || err}</p>
+    </div>`;
+}
+
+// ── Summary chips ───────────────────────────────────────────
+function renderSummary() {
+  const types = {};
+  allData.forEach(r => { types[r[1]] = (types[r[1]] || 0) + 1; });
+
+  const days = new Set(allData.map(r => r[0])).size;
+  let html = `
+    <div class="summary-chip">
+      <div class="num">${days}</div>
+      <div class="lbl">天數</div>
+    </div>
+    <div class="summary-chip">
+      <div class="num">${allData.length}</div>
+      <div class="lbl">行程項目</div>
+    </div>`;
+
+  Object.entries(types).forEach(([type, cnt]) => {
+    html += `<div class="summary-chip">
+      <div class="num">${cnt}</div>
+      <div class="lbl">${ICON[type]||''} ${type}</div>
+    </div>`;
+  });
+
+  document.getElementById('summary').innerHTML = html;
+}
+
+// ── Render cards grouped by day ─────────────────────────────
+function renderContent() {
+  const filtered = allData.filter(r => {
+    if (activeFilter === 'all') return true;
+    return r[0].includes(activeFilter) || r[1] === activeFilter;
+  });
+
+  if (filtered.length === 0) {
+    document.getElementById('content').innerHTML = `
+      <div class="state-box">
+        <div class="icon">🔍</div>
+        <p>沒有符合篩選條件的項目</p>
+      </div>`;
+    return;
+  }
+
+  // Group by day
+  const groups = {};
+  filtered.forEach(r => {
+    const day = r[0];
+    if (!groups[day]) groups[day] = [];
+    groups[day].push(r);
+  });
+
+  let html = '';
+  Object.entries(groups).forEach(([day, rows], gi) => {
+    html += `<section class="day-section">
+      <div class="day-header">
+        <span class="day-badge">${day}</span>
+        <span class="day-count">${rows.length} 個項目</span>
+      </div>
+      <div class="cards-grid">`;
+
+    rows.forEach((r, ci) => {
+      const [dayVal, type, time, location, desc, weather] = r;
+      const icon    = ICON[type] || '📌';
+      const typeClass = `type-${type}`;
+      const iconClass = `icon-${type}`;
+      const delay = (gi * 5 + ci) * 40;
+
+      html += `
+        <div class="card" style="animation-delay:${delay}ms">
+          <div class="card-icon ${iconClass}">${icon}</div>
+          <div class="card-body">
+            <div class="card-top">
+              <span class="type-tag ${typeClass}">${type}</span>
+              ${time ? `<span class="time-tag">🕐 ${time}</span>` : ''}
+            </div>
+            <div class="card-location" title="${escHtml(location)}">${escHtml(location)}</div>
+            <div class="card-desc">${escHtml(desc)}</div>
+            ${weather ? `<div class="card-weather">☁️ ${escHtml(weather)}</div>` : ''}
+          </div>
+        </div>`;
+    });
+
+    html += `</div></section>`;
+  });
+
+  document.getElementById('content').innerHTML = html;
+}
+
+function escHtml(str) {
+  return String(str || '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+</script>
+</body>
+</html>
