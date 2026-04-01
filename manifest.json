@@ -1,0 +1,14 @@
+{
+  "name": "新加坡魚尾獅之旅",
+  "short_name": "SG 行程",
+  "description": "新加坡 5天4夜行程 App",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#F5ECD7",
+  "theme_color": "#C47F2E",
+  "orientation": "portrait",
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png" }
+  ]
+}
