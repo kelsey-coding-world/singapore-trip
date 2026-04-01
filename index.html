@@ -18,70 +18,73 @@
   --brown-d:#3E2100;--brown-m:#6B4226;--brown-l:#9C7045;
 }
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;margin:0;padding:0;}
-html, body { height: 100dvh; overflow: hidden; }
-body {
-  font-family:'Noto Sans TC',sans-serif;
-  background:var(--bg);
-  background-image:radial-gradient(circle,rgba(180,140,80,.06) 1px,transparent 1px);
-  background-size:24px 24px;
-  color:var(--brown-d);
-  display:flex; flex-direction:column;
-}
-.header-wrap{flex-shrink:0;background:var(--card);border-bottom:3px solid var(--border);padding:12px 16px 8px;border-radius:0 0 20px 20px;text-align:center;box-shadow:0 3px 8px rgba(0,0,0,0.06);}
-.h-guide{font-size:10px;color:var(--brown-l);letter-spacing:.15em;margin-bottom:2px;font-weight:500;}
-.h-title{font-size:22px;font-weight:900;color:var(--brown-d);line-height:1.1;}
-.h-sub{font-size:11px;color:var(--brown-l);margin-top:2px;font-weight:500;}
-.tabs-wrap{flex-shrink:0;background:rgba(245,236,215,.97);backdrop-filter:blur(6px);border-bottom:2px solid var(--border);padding:7px 10px 6px;}
+html,body{height:100dvh;overflow:hidden;}
+body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);background-image:radial-gradient(circle,rgba(180,140,80,.06) 1px,transparent 1px);background-size:24px 24px;color:var(--brown-d);display:flex;flex-direction:column;}
+
+.header-wrap{flex-shrink:0;background:var(--card);border-bottom:3px solid var(--border);padding:10px 16px 7px;border-radius:0 0 18px 18px;text-align:center;box-shadow:0 3px 8px rgba(0,0,0,0.06);}
+.h-guide{font-size:10px;color:var(--brown-l);letter-spacing:.15em;margin-bottom:1px;font-weight:500;}
+.h-title{font-size:22px;font-weight:900;color:var(--brown-d);line-height:1.15;}
+.h-sub{font-size:11px;color:var(--brown-l);margin-top:1px;font-weight:500;}
+
+.tabs-wrap{flex-shrink:0;background:rgba(245,236,215,.97);backdrop-filter:blur(6px);border-bottom:2px solid var(--border);padding:6px 10px 5px;}
 .tabs{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;}
 .tabs::-webkit-scrollbar{display:none;}
-.tab{flex-shrink:0;border-radius:16px;padding:7px 14px;font-size:12px;font-weight:700;font-family:'Noto Sans TC',sans-serif;border:2px solid var(--border);background:var(--card);color:var(--brown-m);cursor:pointer;white-space:nowrap;transition:all .18s;}
+.tab{flex-shrink:0;border-radius:14px;padding:6px 13px;font-size:13px;font-weight:700;font-family:'Noto Sans TC',sans-serif;border:2px solid var(--border);background:var(--card);color:var(--brown-m);cursor:pointer;white-space:nowrap;transition:all .18s;}
 .tab.active{background:var(--accent);color:#FFF8EC;border-color:var(--accent);box-shadow:0 3px 0 #9A5E18;}
-.pg{display:none;flex-direction:column;flex:1;overflow:hidden;padding:8px 8px 0;}
+
+.pg{display:none;flex-direction:column;flex:1;overflow:hidden;padding:6px 8px 0;}
 .pg.on{display:flex;}
-.banner{flex-shrink:0;background:#FFF8E6;border:2px solid var(--accent-l);border-radius:14px;padding:8px 14px;margin-bottom:6px;}
-.banner-t{font-size:13px;font-weight:900;color:var(--brown-d);}
-.banner-s{font-size:11px;color:var(--brown-l);margin-top:1px;}
-.pager{flex-shrink:0;display:flex;align-items:center;gap:6px;margin-bottom:6px;}
-.pg-btn{background:var(--card);border:2px solid var(--border);border-radius:12px;padding:7px 12px;font-size:12px;font-weight:700;font-family:'Noto Sans TC',sans-serif;color:var(--brown-m);cursor:pointer;display:flex;align-items:center;gap:4px;box-shadow:0 3px 0 var(--border);transition:all .15s;}
+
+.banner{flex-shrink:0;background:#FFF8E6;border:2px solid var(--accent-l);border-radius:12px;padding:7px 12px;margin-bottom:5px;}
+.banner-t{font-size:14px;font-weight:900;color:var(--brown-d);}
+.banner-s{font-size:12px;color:var(--brown-l);margin-top:1px;}
+
+.pager{flex-shrink:0;display:flex;align-items:center;gap:6px;margin-bottom:5px;}
+.pg-btn{background:var(--card);border:2px solid var(--border);border-radius:10px;padding:7px 12px;font-size:13px;font-weight:700;font-family:'Noto Sans TC',sans-serif;color:var(--brown-m);cursor:pointer;display:flex;align-items:center;gap:4px;box-shadow:0 3px 0 var(--border);transition:all .15s;}
 .pg-btn:active{transform:translateY(2px);box-shadow:0 1px 0 var(--border);}
 .pg-btn:disabled{opacity:.35;cursor:default;transform:none;}
-.pg-info{font-size:12px;font-weight:700;color:var(--brown-l);background:var(--card);border:1.5px solid var(--border-l);border-radius:10px;padding:6px 10px;text-align:center;flex:1;}
-.cards-wrap{flex:1;display:flex;flex-direction:column;gap:6px;overflow:hidden;padding-bottom:8px;}
-.card{border-radius:16px;background:var(--card);border:2px solid var(--border-l);box-shadow:0 3px 0 var(--border);padding:10px 12px 8px;display:flex;flex-direction:column;overflow:hidden;animation:cardIn .25s ease both;}
+.pg-info{font-size:13px;font-weight:700;color:var(--brown-l);background:var(--card);border:1.5px solid var(--border-l);border-radius:10px;padding:6px 10px;text-align:center;flex:1;}
+
+.cards-wrap{flex:1;display:flex;flex-direction:column;gap:5px;overflow:hidden;padding-bottom:6px;}
+
+/* ★ 字體放大的卡片 ★ */
+.card{border-radius:14px;background:var(--card);border:2px solid var(--border-l);box-shadow:0 3px 0 var(--border);padding:10px 13px 9px;display:flex;flex-direction:column;overflow:hidden;animation:cardIn .25s ease both;}
 @keyframes cardIn{from{opacity:0;transform:translateY(8px);}to{opacity:1;transform:none;}}
 .card-top{flex-shrink:0;}
-.tag-row{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-bottom:4px;}
-.tag{border-radius:10px;padding:3px 10px;font-size:11px;font-weight:700;display:inline-flex;align-items:center;gap:4px;}
+.tag-row{display:flex;flex-wrap:wrap;align-items:center;gap:5px;margin-bottom:5px;}
+.tag{border-radius:10px;padding:4px 11px;font-size:13px;font-weight:700;display:inline-flex;align-items:center;gap:4px;}
 .t-spot{background:#D4EAC8;color:#2D5A1B;}
 .t-food{background:#F5D5B0;color:#7A2E00;}
 .t-tran{background:#C8DFF0;color:#1A4A70;}
 .t-hotel{background:#E2D4F0;color:#4A2070;}
 .t-shop{background:#F0E8C0;color:#5A4000;}
 .t-other{background:#E8E0D0;color:#4A3820;}
-.time-pill{background:var(--accent-l);color:var(--brown-m);border-radius:10px;padding:3px 9px;font-size:11px;font-weight:700;border:1.5px dashed var(--accent);}
-.loc{font-size:15px;font-weight:900;color:var(--brown-d);line-height:1.2;margin:3px 0;}
-.nav-btn{float:right;margin-left:8px;margin-bottom:3px;padding:7px 12px;font-size:11px;font-family:'Noto Sans TC',sans-serif;background:var(--accent);color:#FFF8EC;border-radius:16px;font-weight:700;box-shadow:0 3px 0 #9A5E18;display:inline-flex;align-items:center;gap:5px;text-decoration:none;border:none;cursor:pointer;}
+.time-pill{background:var(--accent-l);color:var(--brown-m);border-radius:10px;padding:4px 10px;font-size:13px;font-weight:700;border:1.5px dashed var(--accent);}
+.loc{font-size:17px;font-weight:900;color:var(--brown-d);line-height:1.2;margin:3px 0 2px;}
+.nav-btn{float:right;margin-left:8px;margin-bottom:3px;padding:8px 13px;font-size:13px;font-family:'Noto Sans TC',sans-serif;background:var(--accent);color:#FFF8EC;border-radius:14px;font-weight:700;box-shadow:0 3px 0 #9A5E18;display:inline-flex;align-items:center;gap:5px;text-decoration:none;border:none;cursor:pointer;}
 .nav-btn:active{transform:translateY(2px);box-shadow:0 1px 0 #9A5E18;}
-.card-desc{flex:1;overflow:hidden;margin-top:5px;padding-top:5px;border-top:1.5px dashed var(--border-l);}
-.tip-box{background:#FFF8E6;border-radius:10px;padding:6px 10px;border:1.5px dashed var(--accent-l);height:100%;}
-.tip-lbl{font-size:10px;color:var(--accent);font-weight:900;margin-bottom:2px;}
-.desc{font-size:11px;color:var(--brown-m);line-height:1.55;white-space:pre-line;overflow:hidden;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;}
+.card-desc{overflow:hidden;margin-top:6px;padding-top:6px;border-top:1.5px dashed var(--border-l);}
+.tip-box{background:#FFF8E6;border-radius:10px;padding:5px 9px;border:1.5px dashed var(--accent-l);}
+.tip-lbl{font-size:12px;color:var(--accent);font-weight:900;margin-bottom:2px;}
+.desc{font-size:13px;color:var(--brown-m);line-height:1.5;white-space:pre-line;overflow:hidden;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;}
+
 .info-pg{display:none;flex-direction:column;flex:1;overflow-y:auto;padding:10px 8px 80px;}
 .info-pg.on{display:flex;}
 .ic{border-radius:16px;padding:14px;margin-bottom:10px;}
 .ic-row{display:flex;align-items:center;gap:12px;}
 .ic-icon{font-size:1.6rem;flex-shrink:0;}
-.ic-t{font-size:14px;font-weight:700;color:var(--brown-d);}
-.ic-s{font-size:12px;color:var(--brown-l);margin-top:2px;}
-.sec-t{font-size:14px;font-weight:900;color:var(--brown-d);margin:14px 0 8px;display:flex;align-items:center;gap:6px;}
+.ic-t{font-size:15px;font-weight:700;color:var(--brown-d);}
+.ic-s{font-size:13px;color:var(--brown-l);margin-top:2px;}
+.sec-t{font-size:15px;font-weight:900;color:var(--brown-d);margin:14px 0 8px;display:flex;align-items:center;gap:6px;}
 .info-card{border-radius:16px;background:var(--card);border:2px solid var(--border);box-shadow:0 3px 0 var(--border);padding:14px;margin-bottom:10px;}
-.info-loc{font-size:15px;font-weight:900;color:var(--brown-d);line-height:1.2;margin:6px 0 3px;}
-.info-nav{float:right;margin-left:8px;padding:7px 12px;font-size:11px;font-family:'Noto Sans TC',sans-serif;background:var(--accent);color:#FFF8EC;border-radius:16px;font-weight:700;box-shadow:0 3px 0 #9A5E18;display:inline-flex;align-items:center;gap:5px;text-decoration:none;border:none;}
+.info-loc{font-size:16px;font-weight:900;color:var(--brown-d);line-height:1.2;margin:6px 0 3px;}
+.info-nav{float:right;margin-left:8px;padding:8px 13px;font-size:13px;font-family:'Noto Sans TC',sans-serif;background:var(--accent);color:#FFF8EC;border-radius:14px;font-weight:700;box-shadow:0 3px 0 #9A5E18;display:inline-flex;align-items:center;gap:5px;text-decoration:none;border:none;}
+
 .bnav{flex-shrink:0;background:rgba(255,251,242,.98);backdrop-filter:blur(10px);border-top:2px solid var(--border);border-top-left-radius:20px;border-top-right-radius:20px;display:flex;justify-content:space-around;padding:10px 0 20px;box-shadow:0 -3px 8px rgba(0,0,0,0.05);}
 .ni{display:flex;flex-direction:column;align-items:center;color:var(--brown-l);cursor:pointer;gap:3px;background:none;border:none;}
 .ni.active{color:var(--accent);}
 .ni i{font-size:22px;}
-.ni span{font-size:11px;font-weight:900;font-family:'Noto Sans TC',sans-serif;}
+.ni span{font-size:12px;font-weight:900;font-family:'Noto Sans TC',sans-serif;}
 #ldr{position:fixed;inset:0;background:rgba(245,236,215,.95);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;z-index:2000;}
 #ldr p{font-size:15px;color:var(--brown-m);font-weight:700;}
 </style>
@@ -96,9 +99,7 @@ body {
   <h1 class="h-title">新加坡魚尾獅之旅🇸🇬</h1>
   <p class="h-sub">5天4夜 ・ 4/13 – 4/17 🐾</p>
 </div>
-<div class="tabs-wrap">
-  <div class="tabs" id="tabs"></div>
-</div>
+<div class="tabs-wrap"><div class="tabs" id="tabs"></div></div>
 <div id="pg-itinerary" class="pg on">
   <div class="banner" id="banner"></div>
   <div class="pager">
@@ -110,33 +111,15 @@ body {
 </div>
 <div id="pg-info" class="info-pg">
   <p class="sec-t"><i class="fas fa-plane" style="color:var(--accent)"></i> 航班資訊</p>
-  <div class="ic" style="background:#EFF6FF;border:2px solid #AACCE8;box-shadow:0 3px 0 #AACCE8">
-    <div class="ic-row"><i class="fas fa-plane-departure ic-icon" style="color:#4A90C0"></i>
-      <div><p class="ic-t">去程：4/13 (週日) TPE T2</p><p class="ic-s">08:00 起飛 → 12:40 抵達 SIN T2</p></div>
-    </div>
-  </div>
-  <div class="ic" style="background:#EFF6FF;border:2px solid #AACCE8;box-shadow:0 3px 0 #AACCE8">
-    <div class="ic-row"><i class="fas fa-plane-arrival ic-icon" style="color:#4A90C0"></i>
-      <div><p class="ic-t">回程：4/17 (週四) SIN T2</p><p class="ic-s">14:00 起飛 → 18:50 抵達 TPE T2</p></div>
-    </div>
-  </div>
+  <div class="ic" style="background:#EFF6FF;border:2px solid #AACCE8;box-shadow:0 3px 0 #AACCE8"><div class="ic-row"><i class="fas fa-plane-departure ic-icon" style="color:#4A90C0"></i><div><p class="ic-t">去程：4/13 (週日) TPE T2</p><p class="ic-s">08:00 起飛 → 12:40 抵達 SIN T2</p></div></div></div>
+  <div class="ic" style="background:#EFF6FF;border:2px solid #AACCE8;box-shadow:0 3px 0 #AACCE8"><div class="ic-row"><i class="fas fa-plane-arrival ic-icon" style="color:#4A90C0"></i><div><p class="ic-t">回程：4/17 (週四) SIN T2</p><p class="ic-s">14:00 起飛 → 18:50 抵達 TPE T2</p></div></div></div>
   <p class="sec-t"><i class="fas fa-hotel" style="color:var(--accent)"></i> 住宿資訊</p>
-  <div class="info-card">
-    <a href="https://www.google.com/maps/search/?api=1&query=JW+Marriott+Hotel+Singapore+South+Beach" target="_blank" class="info-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-    <span class="tag t-hotel"><i class="fas fa-bed"></i> Day 1–4</span>
-    <p class="info-loc">JW Marriott South Beach</p>
-    <p style="font-size:12px;color:var(--brown-l)">4/13 Check-in → 4/16 Check-out（3晚）</p>
-  </div>
-  <div class="info-card">
-    <a href="https://www.google.com/maps/search/?api=1&query=Dusit+Thani+Laguna+Singapore" target="_blank" class="info-nav"><i class="fas fa-location-arrow"></i> 導航</a>
-    <span class="tag t-hotel"><i class="fas fa-bed"></i> Day 4–5</span>
-    <p class="info-loc">Dusit Thani Laguna Singapore</p>
-    <p style="font-size:12px;color:var(--brown-l)">4/16 Check-in → 4/17 Check-out（1晚）</p>
-  </div>
+  <div class="info-card"><a href="https://www.google.com/maps/search/?api=1&query=JW+Marriott+Hotel+Singapore+South+Beach" target="_blank" class="info-nav"><i class="fas fa-location-arrow"></i> 導航</a><span class="tag t-hotel"><i class="fas fa-bed"></i> Day 1–4</span><p class="info-loc">JW Marriott South Beach</p><p style="font-size:13px;color:var(--brown-l)">4/13 Check-in → 4/16 Check-out（3晚）</p></div>
+  <div class="info-card"><a href="https://www.google.com/maps/search/?api=1&query=Dusit+Thani+Laguna+Singapore" target="_blank" class="info-nav"><i class="fas fa-location-arrow"></i> 導航</a><span class="tag t-hotel"><i class="fas fa-bed"></i> Day 4–5</span><p class="info-loc">Dusit Thani Laguna Singapore</p><p style="font-size:13px;color:var(--brown-l)">4/16 Check-in → 4/17 Check-out（1晚）</p></div>
   <p class="sec-t"><i class="fas fa-lightbulb" style="color:var(--accent)"></i> 實用資訊</p>
-  <div class="ic" style="background:#FFF8E6;border:2px solid var(--accent-l)"><p style="font-size:13px;font-weight:700;color:var(--accent);margin-bottom:4px">🌡️ 天氣</p><p style="font-size:12px;color:var(--brown-m)">四月均溫 29–32°C，高溫多濕，建議帶薄外套</p></div>
-  <div class="ic" style="background:#EEF5E8;border:2px solid #AACCAA"><p style="font-size:13px;font-weight:700;color:#2D5A1B;margin-bottom:4px">💳 金錢</p><p style="font-size:12px;color:var(--brown-m)">新加坡幣（SGD）・普遍刷卡・樟宜機場可換匯</p></div>
-  <div class="ic" style="background:#EFF6FF;border:2px solid #AACCE8"><p style="font-size:13px;font-weight:700;color:#1A4A70;margin-bottom:4px">🚇 交通</p><p style="font-size:12px;color:var(--brown-m)">建議購買 EZ-Link 卡・Grab 叫車 app 很方便</p></div>
+  <div class="ic" style="background:#FFF8E6;border:2px solid var(--accent-l)"><p style="font-size:14px;font-weight:700;color:var(--accent);margin-bottom:4px">🌡️ 天氣</p><p style="font-size:13px;color:var(--brown-m)">四月均溫 29–32°C，高溫多濕，建議帶薄外套</p></div>
+  <div class="ic" style="background:#EEF5E8;border:2px solid #AACCAA"><p style="font-size:14px;font-weight:700;color:#2D5A1B;margin-bottom:4px">💳 金錢</p><p style="font-size:13px;color:var(--brown-m)">新加坡幣（SGD）・普遍刷卡・樟宜機場可換匯</p></div>
+  <div class="ic" style="background:#EFF6FF;border:2px solid #AACCE8"><p style="font-size:14px;font-weight:700;color:#1A4A70;margin-bottom:4px">🚇 交通</p><p style="font-size:13px;color:var(--brown-m)">建議購買 EZ-Link 卡・Grab 叫車 app 很方便</p></div>
 </div>
 <div class="bnav">
   <button onclick="showPg('itinerary')" id="btn-itinerary" class="ni active"><i class="fas fa-paw"></i><span>每日行程</span></button>
@@ -199,7 +182,7 @@ function render(){
     const[,tp,tm,loc,dr,wx]=r;
     const pt=(dr||"").split("|||");const dc=pt[0].trim();const mq=(pt[1]||loc).trim();
     const tg=gt(tp);const isF=tp.includes("餐飲");
-    h+=`<div class="card" style="animation-delay:${i*50}ms"><div class="card-top"><a href="${mu(mq)}" target="_blank" class="nav-btn"><i class="fas fa-location-arrow"></i> 導航</a><div class="tag-row"><span class="tag ${tg.c}"><i class="fas ${tg.i}"></i> ${ec(tp)}</span>${tm?`<span class="time-pill">🕐 ${ec(tm)}</span>`:""}${wx?`<span style="font-size:1rem">${ec(wx)}</span>`:""}</div><p class="loc">${ec(loc)}</p></div>${dc?`<div class="card-desc"><div class="${isF?"tip-box":""}">${isF?'<p class="tip-lbl">💡 美食攻略</p>':""}<p class="desc">${ec(dc)}</p></div></div>`:""}</div>`;
+    h+=`<div class="card" style="animation-delay:${i*50}ms"><div class="card-top"><a href="${mu(mq)}" target="_blank" class="nav-btn"><i class="fas fa-location-arrow"></i> 導航</a><div class="tag-row"><span class="tag ${tg.c}"><i class="fas ${tg.i}"></i> ${ec(tp)}</span>${tm?`<span class="time-pill">🕐 ${ec(tm)}</span>`:""}${wx?`<span style="font-size:1.1rem">${ec(wx)}</span>`:""}</div><p class="loc">${ec(loc)}</p></div>${dc?`<div class="card-desc"><div class="${isF?"tip-box":""}">${isF?'<p class="tip-lbl">💡 美食攻略</p>':""}<p class="desc">${ec(dc)}</p></div></div>`:""}</div>`;
   });
   document.getElementById("cards").innerHTML=h;
 }
