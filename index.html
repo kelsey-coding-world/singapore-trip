@@ -89,7 +89,12 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);background-image
     <div class="pg-info" id="pi1"></div>
     <button class="pg-btn" id="n1" onclick="go(1)">下一頁 <i class="fas fa-chevron-right"></i></button>
   </div>
-  <div class="cards-wrap" id="cards"></div>
+<div class="cards-wrap" id="cards"></div>
+  <div class="pager" style="margin-top:10px;margin-bottom:14px;">
+    <button class="pg-btn" id="p2" onclick="go(-1)"><i class="fas fa-chevron-left"></i> 上一頁</button>
+    <div class="pg-info" id="pi2"></div>
+    <button class="pg-btn" id="n2" onclick="go(1)">下一頁 <i class="fas fa-chevron-right"></i></button>
+  </div>
 </div>
 <div id="pg-info" class="info-pg">
   <p class="sec-t"><i class="fas fa-plane" style="color:var(--accent)"></i> 航班資訊</p>
@@ -242,9 +247,13 @@ function go(dir){
   }
   render(); window.scrollTo(0,0);
 }
-function render(){const rows=DATA.filter(r=>r[0]===day);const cfg=DCFG.find(d=>d.k===day);const tot=Math.ceil(rows.length/PER)||1;const sl=rows.slice(pg*PER,(pg+1)*PER);document.getElementById("banner").innerHTML=`<p class="banner-t">${cfg.e} ${day} — ${DT[day]||""}</p><p class="banner-s">共 ${rows.length} 項 ・ 第 ${pg+1} 頁／共 ${tot} 頁</p>`;const pi=`${pg+1} / ${tot}`;document.getElementById("pi1").textContent=pi;const dayIdx=DCFG.findIndex(d=>d.k===day);
+function render(){const rows=DATA.filter(r=>r[0]===day);const cfg=DCFG.find(d=>d.k===day);const tot=Math.ceil(rows.length/PER)||1;const sl=rows.slice(pg*PER,(pg+1)*PER);document.getElementById("banner").innerHTML=`<p class="banner-t">${cfg.e} ${day} — ${DT[day]||""}</p><p class="banner-s">共 ${rows.length} 項 ・ 第 ${pg+1} 頁／共 ${tot} 頁</p>`;const pi=`${pg+1} / ${tot}`;document.getElementById("pi1").textContent=pi;
+document.getElementById("pi2").textContent=pi;
+const dayIdx=DCFG.findIndex(d=>d.k===day);
 document.getElementById("p1").disabled=(pg===0 && dayIdx===0);
-document.getElementById("n1").disabled=(pg>=tot-1 && dayIdx===DCFG.length-1);;let h="";sl.forEach((r,i)=>{const[,tp,tm,loc,dr,wx]=r;const pt=(dr||"").split("|||");const dc=pt[0].trim();const mq=(pt[1]||loc).trim();const tg=gt(tp);const isF=tp.includes("餐飲");h+=`<div class="card" style="animation-delay:${i*60}ms"><div class="tag-row"><a href="${mu(mq)}" target="_blank" class="nav-btn"><i class="fas fa-location-arrow"></i> 導航</a><span class="tag ${tg.c}"><i class="fas ${tg.i}"></i> ${ec(tp)}</span>${tm?`<span class="time-pill">🕐 ${ec(tm)}</span>`:""}${wx?`<span style="font-size:1.2rem">${ec(wx)}</span>`:""}</div><p class="loc">${ec(loc)}</p>${dc?`<div class="card-desc"><div class="${isF?"tip-box":""}">${isF?'<p class="tip-lbl">💡 美食攻略</p>':""}<p class="desc">${ec(dc)}</p></div></div>`:""}</div>`;});document.getElementById("cards").innerHTML=h;}
+document.getElementById("p2").disabled=(pg===0 && dayIdx===0);
+document.getElementById("n1").disabled=(pg>=tot-1 && dayIdx===DCFG.length-1);
+document.getElementById("n2").disabled=(pg>=tot-1 && dayIdx===DCFG.length-1);let h="";sl.forEach((r,i)=>{const[,tp,tm,loc,dr,wx]=r;const pt=(dr||"").split("|||");const dc=pt[0].trim();const mq=(pt[1]||loc).trim();const tg=gt(tp);const isF=tp.includes("餐飲");h+=`<div class="card" style="animation-delay:${i*60}ms"><div class="tag-row"><a href="${mu(mq)}" target="_blank" class="nav-btn"><i class="fas fa-location-arrow"></i> 導航</a><span class="tag ${tg.c}"><i class="fas ${tg.i}"></i> ${ec(tp)}</span>${tm?`<span class="time-pill">🕐 ${ec(tm)}</span>`:""}${wx?`<span style="font-size:1.2rem">${ec(wx)}</span>`:""}</div><p class="loc">${ec(loc)}</p>${dc?`<div class="card-desc"><div class="${isF?"tip-box":""}">${isF?'<p class="tip-lbl">💡 美食攻略</p>':""}<p class="desc">${ec(dc)}</p></div></div>`:""}</div>`;});document.getElementById("cards").innerHTML=h;}
 window.onload=function(){buildTabs();render();document.getElementById("ldr").style.display="none";if("serviceWorker"in navigator)navigator.serviceWorker.register("sw.js").catch(()=>{});};
 </script>
 </body>
