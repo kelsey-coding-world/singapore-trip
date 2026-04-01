@@ -36,7 +36,7 @@ body{font-family:'Noto Sans TC',sans-serif;background:var(--bg);background-image
 .pg.on{display:flex;}
 
 .banner{flex-shrink:0;background:#FFF8E6;border:2px solid var(--accent-l);border-radius:12px;padding:7px 12px;margin-bottom:5px;}
-.banner-t{font-size:14px;font-weight:900;color:var(--brown-d);}
+.banner-t{font-size:14px;font-weight:900;color:var(--brown-d);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
 .banner-s{font-size:12px;color:var(--brown-l);margin-top:1px;}
 
 .pager{flex-shrink:0;display:flex;align-items:center;gap:6px;margin-bottom:5px;}
@@ -159,7 +159,7 @@ const DATA=[
 ];
 const PER=3;
 const DCFG=[{k:"Day 1",s:"4/13",e:"✈️"},{k:"Day 2",s:"4/14",e:"🎢"},{k:"Day 3",s:"4/15",e:"🦁"},{k:"Day 4",s:"4/16",e:"🏮"},{k:"Day 5",s:"4/17",e:"🛫"}];
-const DT={"Day 1":"飛向新加坡 + 鈦坦辦公室 + Night Safari 🌙","Day 2":"環球影城探險 🎢 + 克拉碼頭","Day 3":"魚尾獅與滑車 🦁 + Gardens by the Bay","Day 4":"文化街美食 🏮 Arab Street + Chinatown","Day 5":"機場採買回家 🛫"};
+const DT={"Day 1":"飛向新加坡 + Night Safari 🌙","Day 2":"環球影城探險 🎢 + 克拉碼頭","Day 3":"魚尾獅與滑車 🦁 + Gardens by the Bay","Day 4":"文化街美食 🏮","Day 5":"機場採買回家 🛫"};
 function gt(t){if(t.includes("交通"))return{c:"t-tran",i:"fa-train"};if(t.includes("餐飲"))return{c:"t-food",i:"fa-utensils"};if(t.includes("住宿"))return{c:"t-hotel",i:"fa-bed"};if(t.includes("購物"))return{c:"t-shop",i:"fa-bag-shopping"};return{c:"t-spot",i:"fa-camera"};}
 function mu(q){return"https://www.google.com/maps/search/?api=1&query="+encodeURIComponent(q);}
 function ec(s){return String(s||"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");}
